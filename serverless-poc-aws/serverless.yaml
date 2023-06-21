@@ -1,0 +1,51 @@
+service: serverless-file-upload-poc
+provider:
+  name: aws
+  runtime: java11
+package:
+  artifact: target/file-upload-shaded.jar
+
+functions:
+  uploadFile:
+    handler: org.springframework.cloud.function.adapter.aws.FunctionInvoker
+    environment:
+      SPRING_CLOUD_FUNCTION_DEFINITION: uploadFileHandler
+    events:
+      - http:
+          method: post
+          path: /file
+
+  retrieveAllFiles:
+    handler: org.springframework.cloud.function.adapter.aws.FunctionInvoker
+    environment:
+      SPRING_CLOUD_FUNCTION_DEFINITION: retrieveAllFilesHandler
+    events:
+      - http:
+          method: get
+          path: /file
+
+  retrieveFileById:
+    handler: org.springframework.cloud.function.adapter.aws.FunctionInvoker
+    environment:
+      SPRING_CLOUD_FUNCTION_DEFINITION: retrieveFileByIdHandler
+    events:
+      - http:
+          method: get
+          path: /file/{id}
+          request:
+            parameters:
+              paths:
+                id: true
+
+  deleteFileById:
+    handler: org.springframework.cloud.function.adapter.aws.FunctionInvoker
+    environment:
+      SPRING_CLOUD_FUNCTION_DEFINITION: deleteFileByIdHandler
+    events:
+      - http:
+          method: delete
+          path: /file/{id}
+          request:
+            parameters:
+              paths:
+                id: true

@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  mongodb:
+    image: mongo:5.0
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: theMONGOroot
+      MONGO_INITDB_ROOT_PASSWORD: notURAveRageWEakP@@swoRD_
+    ports:
+      - 9028:27017
