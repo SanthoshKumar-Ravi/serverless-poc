@@ -13,7 +13,7 @@ We have created a serverless template to run the lambda function locally. We nee
 curl -o- -L https://slss.io/install | bash
 ```
 
-##### To Run the application locally:
+##### To Run the application  locally:
 
 First make sure the `mongodb` container is running by executing `docker compose up -d`.
 
